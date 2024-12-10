@@ -79,7 +79,7 @@ def create_plots():
     return charcount_plot, codepercent_plot, codeblocks_plot
 
 # Streamlit app
-st.title("LLM Large Long Output Evaluation")
+st.title("LLM Long Code Generation Output Experiment")
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
