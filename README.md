@@ -4,6 +4,8 @@
 
 *10-Dec-24*
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://llm-long-codegen.streamlit.app/)
+
 The purpose of this experiment was to compare and evaluate the capability of different code generation large language models to generate a single long continuous output. 
 
 The prompt used as well as all the outputs are recorded in the data folder. The demanding prompt requested that the LLM assist in the generation of a Open AI Whisper Speech to text transcription GUI for Linux. 
