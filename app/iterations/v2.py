@@ -6,15 +6,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import io
 
-# Get the directory where the script is located
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Construct the paths relative to the script's location
-data_path = os.path.join(script_dir, 'data', 'evaluations.csv')
-prompt_path = os.path.join(script_dir, 'data', 'prompts', 'prompt.md')
-outputs_path = os.path.join(script_dir, 'data', 'outputs')
-
 # Load the data
+data_path = 'data/evaluations.csv'
 if not os.path.exists(data_path):
     st.error(f"Data file not found: {data_path}")
     st.stop()
@@ -32,6 +25,7 @@ data.rename(columns={
 }, inplace=True)
 
 # Load the prompt
+prompt_path = 'data/prompts/prompt.md'
 if not os.path.exists(prompt_path):
     st.error(f"Prompt file not found: {prompt_path}")
     st.stop()
@@ -39,6 +33,7 @@ with open(prompt_path, 'r') as file:
     prompt_content = file.read()
 
 # Load outputs
+outputs_path = 'data/outputs'
 if not os.path.exists(outputs_path):
     st.error(f"Outputs directory not found: {outputs_path}")
     st.stop()
