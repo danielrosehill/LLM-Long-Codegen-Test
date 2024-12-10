@@ -59,7 +59,7 @@ def create_bar_chart(data, column):
 
 # Define the Streamlit interface
 def view_data():
-    st.dataframe(data, height=600)  # Increase height to avoid scrolling
+    st.dataframe(data)
 
 def view_prompt():
     st.markdown(prompt_content)
@@ -82,51 +82,29 @@ def create_plots():
 st.title("LLM Large Long Output Evaluation")
 
 # Sidebar navigation
-st.sidebar.title("Navigation")
-data_tab = st.sidebar.button("Data", use_container_width=True)
-visualizations_tab = st.sidebar.button("Visualizations", use_container_width=True)
-outputs_tab = st.sidebar.button("Outputs", use_container_width=True)
-prompt_tab = st.sidebar.button("Prompt", use_container_width=True)
-report_tab = st.sidebar.button("Report", use_container_width=True)
+tab = st.sidebar.radio("Navigate", ["Data", "Visualizations", "Outputs", "Prompt"])
 
-# GitHub repository button
-st.sidebar.markdown(
-    "[![GitHub](https://img.shields.io/badge/GitHub-danielrosehill%2FLLM--Long--Codegen--Test-blue?logo=github)](https://github.com/danielrosehill/LLM-Long-Codegen-Test)"
-)
-
-# About section
-st.sidebar.markdown("""
-### About
-This experiment was conducted on the 10th of December 2024 by Daniel Rosehill.  
-The purpose of this experiment was to compare different large language models' ability to generate a long continuous output in response to a large and demanding prompt.
-""")
-
-# Main content based on button clicks
-if data_tab:
+# Data Tab
+if tab == "Data":
     st.header("Data Table")
     view_data()
-elif visualizations_tab:
+
+# Visualizations Tab
+elif tab == "Visualizations":
     st.header("Visualizations")
     charcount_plot, codepercent_plot, codeblocks_plot = create_plots()
     
     st.image(charcount_plot, caption="Character Count")
     st.image(codepercent_plot, caption="Code Percentage")
     st.image(codeblocks_plot, caption="Code Blocks")
-elif outputs_tab:
+
+# Outputs Tab
+elif tab == "Outputs":
     st.header("Outputs")
     output_index = st.number_input("Output Index (0 to {})".format(len(output_files) - 1), min_value=0, max_value=len(output_files) - 1, value=0, step=1)
     view_output(output_index)
-elif prompt_tab:
+
+# Prompt Tab
+elif tab == "Prompt":
     st.header("Prompt")
     view_prompt()
-elif report_tab:
-    st.header("Report")
-    report_content = """
-    # Blog Text Goes Here
-
-    This is a placeholder for the report. You can replace this with any Markdown content you want.
-    """
-    st.markdown(report_content)
-else:
-    st.header("Data Table")
-    view_data()
